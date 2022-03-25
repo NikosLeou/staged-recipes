@@ -1,0 +1,48 @@
+{% set name = "geodemo" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: e0800d8ead6454ae716dd08e0a6c897ab49b532a2f86c61079f6be383a785e7c
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python >=3.6
+  run:
+    - earthengine-api
+    - folium
+    - geopandas
+    - ipyfilechooser
+    - ipyleaflet
+    - matplotlib
+    - pyshp
+    - python >=3.6
+    - whitebox >=1.4.1
+    - whiteboxgui
+
+test:
+  imports:
+    - geodemo
+
+about:
+  home: "https://github.com/giswqs/geodemo"
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "A Python package for interactive mapping"
+  doc_url: "https://geodemo.gishub.org/
+  dev_url: "https://github.com/giswqs/geodemo"
+
+extra:
+  recipe-maintainers:
+    - NikosLeou
